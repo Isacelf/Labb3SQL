@@ -4,17 +4,19 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello and welcome to the School Menu!");
 
             while (true)
             {
+                Console.Clear();
                 Console.WriteLine("[Menu]");
-                Console.WriteLine("[1] Show students");
-                Console.WriteLine("[2] Show a specific class");
-                Console.WriteLine("[3] Add new Employee");
-                Console.WriteLine("[4] Exit program");
+                Console.WriteLine("[1] Show students"); //Labb3
+                Console.WriteLine("[2] Show a specific class"); //Labb3
+                Console.WriteLine("[3] Show all Courses"); // Ny - Visa aktiva kurser
+                Console.WriteLine("[4] Show all Employees"); // Ny - Antal lärare och information om lärare
+                Console.WriteLine("[5] Add new Employee"); //Labb 3
+                Console.WriteLine("[6] Exit program");
                 Console.WriteLine("");
-                Console.WriteLine("Pick a number: [1]-[4]");
+                Console.WriteLine("Pick a number: [1]-[6]");
                 string input = Console.ReadLine();
 
 
@@ -32,10 +34,20 @@
 
                     case "3":
                         Console.Clear();
-                        Methods.AddEmployee();
+                        Methods.ActiveCourses();
                         break;
 
                     case "4":
+                        Console.Clear();
+                        Methods.Employees();
+                        break;
+
+                    case "5":
+                        Console.Clear();
+                        Methods.AddEmployee();
+                        break;
+
+                    case "6":
                         Environment.Exit(0);
                         break;
 

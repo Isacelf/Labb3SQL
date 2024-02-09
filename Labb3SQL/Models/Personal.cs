@@ -14,6 +14,8 @@ namespace Labb3SQL.Models
         public string Namn { get; set; } = null!;
         public int? BefattningsId { get; set; }
         public string Personnummer { get; set; } = null!;
+        public DateTime? anställning {  get; set; }
+        public int? lön { get; set; }
 
         public virtual Befattningar? Befattnings { get; set; }
         public virtual ICollection<Betyg> Betygs { get; set; }
