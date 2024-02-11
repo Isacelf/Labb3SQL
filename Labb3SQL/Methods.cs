@@ -22,8 +22,7 @@ namespace Labb3AnropaSQL
                 Console.WriteLine("Select an option:");
                 Console.WriteLine("[1] Sort and display students");
                 Console.WriteLine("[2] Select a specific student by StudentID");
-                Console.WriteLine("[3] Show all students and their information");
-                Console.WriteLine("[4] Go back to main menu");
+                Console.WriteLine("[3] Go back to main menu");
 
                 string userChoice = Console.ReadLine();
 
@@ -36,67 +35,64 @@ namespace Labb3AnropaSQL
                         SelectSpecificStudent(context);
                         break;
                     case "3":
-                        ShowAllStudents(context);
-                        break;
-                    case "4":
                         return;
                     default:
                         Console.WriteLine("Invalid choice. Try again!");
                         break;
                 }
-
                 Console.WriteLine("Press ENTER to continue.");
                 Console.ReadLine();
+
             }
         }
-    
 
-    public static void SortAndDisplayStudents(SkolaDbContext context)
-    {
-        Console.Clear();
-        Console.WriteLine("Select how to sort students:");
-        Console.WriteLine("[1] First Name");
-        Console.WriteLine("[2] Last Name");
 
-        string sortBy = Console.ReadLine();
-
-        Console.Clear();
-        Console.WriteLine("Select sorting order:");
-        Console.WriteLine("[1] Ascending");
-        Console.WriteLine("[2] Descending");
-
-        string sortOrder = Console.ReadLine();
-
-        var sortedStudents = sortBy switch
-        {
-            "1" => sortOrder == "1" ?
-                    context.Students.OrderBy(s => s.Förnamn) :
-                    context.Students.OrderByDescending(s => s.Förnamn),
-
-            "2" => sortOrder == "1" ?
-                    context.Students.OrderBy(s => s.Efternamn) :
-                    context.Students.OrderByDescending(s => s.Efternamn),
-
-            _ => null
-        };
-
-        if (sortedStudents != null)
+        public static void SortAndDisplayStudents(SkolaDbContext context)
         {
             Console.Clear();
-            Console.WriteLine($"Students sorted by {(sortBy == "1" ? "first name" : "last name")} in {(sortOrder == "1" ? "ascending" : "descending")} order:\n");
+            Console.WriteLine("Select how to sort students:");
+            Console.WriteLine("[1] First Name");
+            Console.WriteLine("[2] Last Name");
 
-            foreach (var student in sortedStudents)
+            string sortBy = Console.ReadLine();
+
+            Console.Clear();
+            Console.WriteLine("Select sorting order:");
+            Console.WriteLine("[1] Ascending");
+            Console.WriteLine("[2] Descending");
+
+            string sortOrder = Console.ReadLine();
+
+            var sortedStudents = sortBy switch
             {
-                Console.WriteLine($"{student.Förnamn} {student.Efternamn}\nStudentID: {student.ElevId}\n");
+                "1" => sortOrder == "1" ?
+                        context.Students.OrderBy(s => s.Förnamn) :
+                        context.Students.OrderByDescending(s => s.Förnamn),
+
+                "2" => sortOrder == "1" ?
+                        context.Students.OrderBy(s => s.Efternamn) :
+                        context.Students.OrderByDescending(s => s.Efternamn),
+
+                _ => null
+            };
+
+            if (sortedStudents != null)
+            {
+                Console.Clear();
+                Console.WriteLine($"Students sorted by {(sortBy == "1" ? "first name" : "last name")} in {(sortOrder == "1" ? "ascending" : "descending")} order:\n");
+
+                foreach (var student in sortedStudents)
+                {
+                    Console.WriteLine($"{student.Förnamn} {student.Efternamn}\nStudentID: {student.ElevId}\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice. Try again!");
             }
         }
-        else
-        {
-            Console.WriteLine("Invalid choice. Try again!");
-        }
-    }
 
-    public static void SelectSpecificStudent(SkolaDbContext context)
+        public static void SelectSpecificStudent(SkolaDbContext context)
         {
             Console.WriteLine("Select a student by entering StudentID:");
             if (int.TryParse(Console.ReadLine(), out int selectedStudentId))
@@ -122,8 +118,10 @@ namespace Labb3AnropaSQL
             }
         }
 
-        public static void ShowAllStudents(SkolaDbContext context)
+        public static void ShowAllStudents()
         {
+            using SkolaDbContext context = new SkolaDbContext();
+
             Console.Clear();
             Console.WriteLine("All students and their information:\n");
 
@@ -134,7 +132,11 @@ namespace Labb3AnropaSQL
                 Console.WriteLine($"Class: {student.Klassnamn}");
                 Console.WriteLine($"Social security number: {student.Personnummer}");
                 Console.WriteLine();
+
+
             }
+            Console.WriteLine("Press ENTER to continue.");
+            Console.ReadLine();
         }
 
 
@@ -227,7 +229,7 @@ namespace Labb3AnropaSQL
             {
                 Console.Clear();
                 Console.WriteLine("[1] Show active courses");
-                Console.WriteLine("[2] Exit");
+                Console.WriteLine("[2] Go back to main menu");
                 string userInput = Console.ReadLine();
 
                 switch (userInput)
@@ -271,7 +273,7 @@ namespace Labb3AnropaSQL
                 Console.WriteLine("[2] Principals");
                 Console.WriteLine("[3] Cleaners");
                 Console.WriteLine("[4] Chefs");
-                Console.WriteLine("[5] Exit");
+                Console.WriteLine("[5] Go back to main menu");
 
                 Console.Write("Enter your choice: ");
                 string userInput = Console.ReadLine();

@@ -1,4 +1,6 @@
-﻿namespace Labb3AnropaSQL
+﻿using Labb3SQL.Models;
+
+namespace Labb3AnropaSQL
 {
     internal class Program
     {
@@ -9,14 +11,15 @@
             {
                 Console.Clear();
                 Console.WriteLine("[Menu]");
-                Console.WriteLine("[1] Show students"); //Labb3
-                Console.WriteLine("[2] Show a specific class"); //Labb3
-                Console.WriteLine("[3] Show all Courses"); // Ny - Visa aktiva kurser
-                Console.WriteLine("[4] Show all Employees"); // Ny - Antal lärare och information om lärare
-                Console.WriteLine("[5] Add new Employee"); //Labb 3
-                Console.WriteLine("[6] Exit program");
+                Console.WriteLine("[1] Show specific student"); //Labb3
+                Console.WriteLine("[2] Show all students"); //Labb4
+                Console.WriteLine("[3] Show a specific class"); //Labb3
+                Console.WriteLine("[4] Show all Courses"); // Labb4 - Visa aktiva kurser
+                Console.WriteLine("[5] Show all Employees"); // Labb4 - Antal lärare och information om lärare
+                Console.WriteLine("[6] Add new Employee"); //Labb 3
+                Console.WriteLine("[7] Exit program");
                 Console.WriteLine("");
-                Console.WriteLine("Pick a number: [1]-[6]");
+                Console.WriteLine("Pick a number: [1]-[7]");
                 string input = Console.ReadLine();
 
 
@@ -29,25 +32,30 @@
 
                     case "2":
                         Console.Clear();
-                        Methods.StudentInClass();
+                        Methods.ShowAllStudents(); 
                         break;
-
+                  
                     case "3":
                         Console.Clear();
-                        Methods.ActiveCourses();
+                        Methods.StudentInClass();
                         break;
 
                     case "4":
                         Console.Clear();
-                        Methods.Employees();
+                        Methods.ActiveCourses();
                         break;
 
                     case "5":
                         Console.Clear();
-                        Methods.AddEmployee();
+                        Methods.Employees();
                         break;
 
                     case "6":
+                        Console.Clear();
+                        Methods.AddEmployee();
+                        break;
+
+                    case "7":
                         Environment.Exit(0);
                         break;
 
